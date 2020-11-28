@@ -1,0 +1,36 @@
+﻿@if (IsLoad == true)
+{
+    <EditForm Model="this.City" Context="frmContext">
+        <DataAnnotationsValidator />
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <label>City:</label>
+                        <InputSelect @bind-Value="this.City.Id" class="form-control">
+
+                            @foreach (var city in this.ListCities)
+                                {
+                                <option value="@city.Id">@city.Name</option>
+                                }
+                        </InputSelect>
+                        <ValidationMessage For="@(()=> this.City.Id)"></ValidationMessage>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <button class="btn btn-primary" @onclick="@(()=> this.OnSubmit(frmContext))">Submit</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    @if (this.Message != null)
+                    {
+                        <span>@this.Message</span>
+                    }
+                </div>
+            </div>
+        </div>
+    </EditForm>
+}
